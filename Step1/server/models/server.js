@@ -9,6 +9,7 @@ class Server {
     this.paths = {
       auth: "/api/auth",
       homepage: "/api/homepage",
+
     };
 
     this.middlewares();
