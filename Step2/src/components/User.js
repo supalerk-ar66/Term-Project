@@ -2,15 +2,40 @@ import React from 'react';
 import axios from 'axios';
 
 const User = ({ gender, name, location, email, picture, login ,dob}) => {
+
     // Function to handle saving user data to the database
-    const handleSave = () => {
+    /*const handleSave = () => {
         const userData = { gender, name, location, email, picture, login ,dob};
         // Assuming you have a function to save user data to the database
         saveUserData(userData);
     };
+    */
 
-    const saveUserData = (userData) => {
+    const handleSave = () => {
+        const userData = { gender, name, location, email, picture, login, dob };
+        // Convert userData to JSON format
+        const jsonData = JSON.stringify(userData);
+        // Assuming you have a function to save user data to the database
+        saveUserData(jsonData);
+    };
+
+    /*const saveUserData = (userData) => {
         axios.post('http://api-user66030.se-rmutl.net/api/saveuser', userData) // ส่งข้อมูลผู้ใช้ไปยังเซิร์ฟเวอร์ Express
+            .then(response => {
+                console.log(response.data); // แสดงข้อมูลการตอบกลับจากเซิร์ฟเวอร์
+            })
+            .catch(error => {
+                console.error('Error saving user data:', error); // จัดการข้อผิดพลาด
+            });
+    };
+    */
+     const saveUserData = (userData) => {
+        console.log(userData);
+        axios.post('http://api-user66030.se-rmutl.net/api/saveuser', userData, {
+                headers: {
+                    'Content-Type': 'application/json' // ระบุ Content-Type เป็น JSON
+                }
+            })
             .then(response => {
                 console.log(response.data); // แสดงข้อมูลการตอบกลับจากเซิร์ฟเวอร์
             })
